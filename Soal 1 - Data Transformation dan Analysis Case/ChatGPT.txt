@@ -1,0 +1,9 @@
+1.  ChatGPT Instruction : How to filter data using pandas library to get data not null in dataFrame
+    ChatGPT Result: df[df['Name'].notna()] -> df['Name'].notna(): Creates a boolean mask that is True for rows where the 'Name' column is not null.
+
+2.  ChatGPT Instruction: how to convert string time to date_time format YYYY-MM-DD using pandas
+    ChatGPT Result: # Convert the 'time' column to datetime
+    df['date'] = pd.to_datetime(df['date'], format='%Y%m%d')
+
+3.  ChatGPT Instruction: grouping data using pandas by date
+    ChatGPT Result: grouped = df.groupby('date').agg({'value': 'sum'}).reset_index()
