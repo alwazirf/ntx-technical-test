@@ -23,5 +23,14 @@ threshold_lower = daily_revenue['totalTransactionRevenue'].mean() - 3 * daily_re
 
 # Detect anomalies
 anomalies_rules = daily_revenue[(daily_revenue['totalTransactionRevenue'] > threshold_upper) | (daily_revenue['totalTransactionRevenue'] < threshold_lower)]
-
 print(anomalies_rules)
+
+## Identify the most profitable city or province based on the total transaction revenue.
+new_data_for_profitable = filter_revenue_data[['v2ProductName', 'totalTransactionRevenue', 'date', 'city']]
+# clear row data where city column value is 'not available in demo dataset' and (not set)
+new_data_for_profitable = new_data_for_profitable[
+    (new_data_for_profitable['city'] != 'not available in demo dataset') & 
+    (new_data_for_profitable['city'] != '(not set)')
+]
+most_profitable_city_or_province = new_data_for_profitable.nlargest(1, 'totalTransactionRevenue')
+print(most_profitable_city_or_province['city'].values[0])

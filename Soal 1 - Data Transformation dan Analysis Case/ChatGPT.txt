@@ -39,4 +39,8 @@
     # Detect anomalies
     anomalies_rules = daily_transactions[(daily_transactions['transaction_count'] > threshold_upper) | (daily_transactions['transaction_count'] < threshold_lower)]
 
-7. 
+7.  ChatGPT Instruction: how to clear row data where 'city' column is "not available in demo dataset"      
+    new_data_for_profitable = filter_revenue_data[['v2ProductName', 'totalTransactionRevenue', 'date', 'city']]
+    new_data_for_profitable['city']
+    ChatGPT Result: # Filter out rows where the 'city' column is "not available in demo dataset"
+    new_data_for_profitable = new_data_for_profitable[new_data_for_profitable['city'] != "not available in demo dataset"]
