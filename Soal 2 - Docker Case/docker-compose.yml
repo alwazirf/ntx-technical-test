@@ -1,2 +1,22 @@
-version: "3"
+# version: '3'
 services:
+  api:
+    image: api:latest
+    container_name: api
+    ports:
+      - '6000:6000'
+    networks:
+      - my-network
+
+  etl:
+    image: etl:latest
+    container_name: etl
+    depends_on:
+      - api
+    networks:
+      - my-network
+    command: python etl.py
+
+networks:
+  my-network:
+    driver: bridge
